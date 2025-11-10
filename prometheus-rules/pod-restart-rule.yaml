@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pod-restart-alert
+  namespace: monitoring-ryan
+  labels:
+    release: prometheus
+spec:
+  groups:
+  - name: pod-restart.rules
+    rules:
+    - alert: PodRestartTooManyTimes
+      expr: increase(kube_pod_container_status_restarts_total[5m]) > 5
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Pod {{ $labels.pod }} restart lebih dari 5x"
+        description: "Pod {{ $labels.pod }} di namespace {{ $labels.namespace }} mengalami restart lebih dari 5 kali dalam 5 menit terakhir."

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crashy-app
+  labels:
+    app: crashy-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crashy-app
+  template:
+    metadata:
+      labels:
+        app: crashy-app
+    spec:
+      containers:
+        - name: crashy
+          image: ryanraditya/crashy-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
