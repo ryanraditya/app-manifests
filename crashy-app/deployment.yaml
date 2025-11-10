@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: crashy
-          image: ryanraditya/crashy-app:latest
+          image: image: ryanskrtt/crashy-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
