@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: web-down-alert
+  namespace: monitoring-ryan
+  labels:
+    release: prometheus
+spec:
+  groups:
+  - name: web-availability.rules
+    rules:
+    - alert: WebMasjidDown
+      expr: up{job="crashy-app"} == 0
+      for: 15s
+      labels:
+        severity: critical
+      annotations:
+        summary: "Website crashy-app tidak dapat diakses"
+        description: "Web Masjid (job=crashy-app) DOWN. Tidak merespons permintaan HTTP selama 15 detik terakhir."
