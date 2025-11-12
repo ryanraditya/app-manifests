@@ -4,7 +4,7 @@ metadata:
   name: pod-restart-too-many-times
   namespace: monitoring-ryan
   labels:
-    release: prometheus   # <--- ini kuncinya!
+    release: prometheus
 spec:
   groups:
   - name: pod-restart.rules
