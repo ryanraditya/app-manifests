@@ -3,6 +3,8 @@ kind: PrometheusRule
 metadata:
   name: pod-restart-too-many-times
   namespace: monitoring-ryan
+  labels:
+    release: prometheus   # <--- ini kuncinya!
 spec:
   groups:
   - name: pod-restart.rules
